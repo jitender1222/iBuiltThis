@@ -31,7 +31,7 @@ const statsData = [
 
 const HeroSection = () => {
   return (
-    <section className="">
+    <section className="relative overflow-hidden bg-linear-to-b from-background via-background to-muted/20">
       <div className="wrapper flex flex-col items-center justify-center text-center lg:py-24 py-12">
         <Badge
           variant="outline"
@@ -53,7 +53,7 @@ const HeroSection = () => {
           products,and creative projects.Authentic launches,real
           builders,genuine feedback
         </p>
-        <div className="flex flex-col sm:flex-row mb-16 gap-4 ">
+        <div className="flex flex-col sm:flex-row mb-16 gap-4">
           <Button
             asChild
             size="lg"

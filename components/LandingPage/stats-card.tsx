@@ -15,7 +15,7 @@ const StatsCard = ({
   return (
     <div
       className={cn(
-        "space-y-2",
+        "space-y-2 ",
         hasBorder && "border-x border-border-border/50"
       )}
     >
