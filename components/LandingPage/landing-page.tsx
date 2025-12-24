@@ -35,7 +35,7 @@ const HeroSection = () => {
       <div className="wrapper flex flex-col items-center justify-center text-center lg:py-24 py-12">
         <Badge
           variant="outline"
-          className="py-2 px-4 mb-8 text-sm backdrop-blur-sm"
+          className="py-2 px-4 mb-8 backdrop-blur-sm md:text-sm"
         >
           <span className="h-2 w-2 relative mr-2">
             <span className="bg-primary opacity-75 h-full w-full rounded-full animate-ping absolute inline-flex"></span>
