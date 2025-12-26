@@ -2,44 +2,9 @@ import { ArrowUpRight, LucideIcon } from "lucide-react";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import ProductCard from "../ProductCard/ProductCard";
+import { FeatureProduct } from "@/lib/products/featured-products";
 
-const featuredProducts = [
-  {
-    id: 1,
-    title: "Parity Kit",
-    icon: "star",
-    description:
-      "Maximize your global revenue with intelligent price localization. Automatically adjust pricing based on purchasing power parity to increase conversions worldwide",
-    url: "www.google.com",
-    tags: ["Saas", "Pricing", " Global"],
-    votes: 1,
-    isFeatured: true,
-  },
-  {
-    id: 2,
-    title: "User Info",
-    icon: "star",
-    description:
-      "Maximize your global revenue with intelligent price localization. Automatically adjust pricing based on purchasing power parity to increase conversions worldwide",
-    url: "www.google.com",
-    votes: 2,
-    tags: ["Saas", "Pricing", "Global"],
-    isFeatured: true,
-  },
-  {
-    id: 3,
-    title: "Gistify",
-    icon: "star",
-    description:
-      "Maximize your global revenue with intelligent price localization. Automatically adjust pricing based on purchasing power parity to increase conversions worldwide",
-    url: "www.google.com",
-    votes: 3,
-    tags: ["Saas", "Pricing", "Global"],
-    isFeatured: true,
-  },
-];
-
-const SectionHeader = ({
+const SectionHeader = async ({
   title,
   icon: Icon,
   description,
@@ -48,6 +13,7 @@ const SectionHeader = ({
   icon: LucideIcon;
   description: string;
 }) => {
+  const featuredProducts = await FeatureProduct();
   return (
     <>
       <div className="wrapper">
@@ -79,7 +45,7 @@ const SectionHeader = ({
 
         <div className="grid-wrapper">
           {featuredProducts.map((items) => (
-            <ProductCard key={items.title} product={items} />
+            <ProductCard key={items.id} product={items} />
           ))}
         </div>
       </div>

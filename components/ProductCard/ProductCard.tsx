@@ -9,17 +9,10 @@ import {
 } from "../ui/card";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
+import { InferSelectModel } from "drizzle-orm";
+import { Products } from "@/db/schema";
 
-interface Products {
-  id: number;
-  title: string;
-  icon: string;
-  description: string;
-  tags: string[];
-  url: string;
-  votes: number;
-  isFeatured: boolean;
-}
+type Products = InferSelectModel<typeof Products>;
 
 const ProductCard = ({ product }: { product: Products }) => {
   return (
@@ -30,8 +23,8 @@ const ProductCard = ({ product }: { product: Products }) => {
             <div className="flex items-start gap-4">
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2">
-                  <CardTitle className="text-lg">{product.title}</CardTitle>
-                  {product.isFeatured && (
+                  <CardTitle className="text-lg">{product.name}</CardTitle>
+                  {product.voteCount > 100 && (
                     <Badge>
                       <Star /> Featured
                     </Badge>
@@ -47,7 +40,7 @@ const ProductCard = ({ product }: { product: Products }) => {
                 >
                   <ChevronUp className="size-6" />
                 </Button>
-                <p>2</p>
+                <p>{product.voteCount}</p>
                 <Button
                   variant="ghost"
                   size="icon-sm"
@@ -60,7 +53,7 @@ const ProductCard = ({ product }: { product: Products }) => {
           </CardHeader>
           <CardFooter>
             <div className="flex items-center gap-2">
-              {product.tags.map((items) => (
+              {product.tags?.map((items) => (
                 <Badge variant="secondary" key={items}>
                   {items}
                 </Badge>
