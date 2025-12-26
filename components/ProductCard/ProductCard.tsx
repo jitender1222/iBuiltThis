@@ -1,10 +1,4 @@
-import {
-  ArrowUp,
-  ChevronDown,
-  ChevronUp,
-  LucideIcon,
-  Star,
-} from "lucide-react";
+import { ChevronDown, ChevronUp, Star } from "lucide-react";
 import Link from "next/link";
 import {
   Card,

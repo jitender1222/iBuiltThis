@@ -1,6 +1,13 @@
 import { Home, Map, SparkleIcon } from "lucide-react";
 import { Button } from "../ui/button";
 import Link from "next/link";
+import {
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  SignUpButton,
+  UserButton,
+} from "@clerk/nextjs";
 
 const Header = () => {
   return (
@@ -24,10 +31,23 @@ const Header = () => {
         </Link>
       </div>
       <div className="flex gap-2 ">
-        <Button className="cursor-pointer" variant="outline">
-          Signin
-        </Button>
-        <Button className="cursor-pointer">Signup</Button>
+        <SignedIn>
+          <Button className="cursor-pointer">
+            <SparkleIcon /> Submit Project
+          </Button>
+          <UserButton />
+        </SignedIn>
+
+        <SignedOut>
+          <SignInButton>
+            <Button className="cursor-pointer" variant="outline">
+              Signin
+            </Button>
+          </SignInButton>
+          <SignUpButton>
+            <Button className="cursor-pointer">Signup</Button>
+          </SignUpButton>
+        </SignedOut>
       </div>
     </div>
   );
