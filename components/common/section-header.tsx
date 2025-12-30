@@ -33,7 +33,7 @@ const SectionHeader = async ({
               asChild
               className="hidden sm:flex cursor-pointer"
             >
-              <Link href="/explore">
+              <Link href="/products/">
                 View All
                 <span>
                   <ArrowUpRight />

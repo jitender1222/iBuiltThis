@@ -1,56 +1,79 @@
-import { Home, Map, SparkleIcon } from "lucide-react";
-import { Button } from "../ui/button";
-import Link from "next/link";
+import { SignedIn, SignedOut, SignInButton, SignUpButton } from "@clerk/nextjs";
 import {
-  SignedIn,
-  SignedOut,
-  SignInButton,
-  SignUpButton,
-  UserButton,
-} from "@clerk/nextjs";
+  CompassIcon,
+  HomeIcon,
+  LoaderIcon,
+  SparkleIcon,
+  SparklesIcon,
+} from "lucide-react";
+import Link from "next/link";
+import { Suspense } from "react";
+import { Button } from "../ui/button";
+// import CustomUserButton from "../ui/button";
 
-const Header = () => {
+const Logo = () => {
   return (
-    <div className="flex justify-between p-4 border-b-2 items-center">
-      <div className="flex font-bold md:text-xl cursor-pointer items-center">
-        <SparkleIcon className="bg-primary md:size-10 p-2 mr-2 rounded-xl text-white" />
-        i<span className="text-ring">Built</span>
-        This
+    <Link href="/" className="flex items-center gap-2 group">
+      <div className="size-8 rounded-lg bg-primary flex items-center justify-center">
+        <SparkleIcon className="size-4 text-primary-foreground" />
       </div>
-      <div className="gap-2 hidden md:flex">
-        <Link href="/">
-          <span className="flex gap-2 p-2 hover:bg-muted/20 cursor-pointer">
-            <Home /> Home{" "}
-          </span>
-        </Link>
-
-        <Link href="/explore">
-          <span className="flex gap-2 p-2 hover:bg-muted/20 cursor-pointer">
-            <Map /> Explore{" "}
-          </span>
-        </Link>
-      </div>
-      <div className="flex gap-2 ">
-        <SignedIn>
-          <Button className="cursor-pointer">
-            <SparkleIcon /> Submit Project
-          </Button>
-          <UserButton />
-        </SignedIn>
-
-        <SignedOut>
-          <SignInButton>
-            <Button className="cursor-pointer" variant="outline">
-              Signin
-            </Button>
-          </SignInButton>
-          <SignUpButton>
-            <Button className="cursor-pointer">Signup</Button>
-          </SignUpButton>
-        </SignedOut>
-      </div>
-    </div>
+      <span className="text-xl font-bold">
+        i<span className="text-primary">Built</span>This
+      </span>
+    </Link>
   );
 };
+export default function Header() {
+  return (
+    <header className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60">
+      <div className="wrapper px-12">
+        <div className="flex h-16 items-center justify-between">
+          <Logo />
+          <nav className="flex items-center gap-1">
+            <Link
+              href="/"
+              className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors hover:bg-muted/50"
+            >
+              <HomeIcon className="size-4" />
+              <span>Home</span>
+            </Link>
+            <Link
+              href="/explore"
+              className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors hover:bg-muted/50"
+            >
+              <CompassIcon className="size-4" />
+              <span>Explore</span>
+            </Link>
+          </nav>
 
-export default Header;
+          <div className="flex items-center gap-3">
+            {/* <Suspense
+              fallback={
+                <div>
+                  <LoaderIcon className="size-4 animate-spin" />
+                </div>
+              }
+            > */}
+            <SignedOut>
+              <SignInButton />
+              <SignUpButton>
+                <Button>Sign Up</Button>
+              </SignUpButton>
+            </SignedOut>
+            <SignedIn>
+              <Button asChild>
+                <Link href="/submit">
+                  <SparklesIcon className="size-4" />
+                  Submit Project
+                </Link>
+              </Button>
+
+              <Button />
+            </SignedIn>
+            {/* </Suspense> */}
+          </div>
+        </div>
+      </div>
+    </header>
+  );
+}

@@ -5,13 +5,12 @@ import Header from "@/components/Header/page";
 import Footer from "@/components/Footer/page";
 import { ClerkProvider } from "@clerk/nextjs";
 
-const outfit = Outfit({
-  subsets: ["latin"],
-});
+const outfit = Outfit({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "I Built My App",
-  description: "A community platform for creators to showcase their apps.",
+  title: "iBuiltThis - Share Your Creations, Discover New Launches",
+  description:
+    "A community platform for creators to showcase their apps, AI tools, SaaS products, and creative projects. Authentic launches, real builders, genuine feedback.",
 };
 
 export default function RootLayout({
@@ -20,14 +19,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
+    <div>
       <html lang="en">
         <body className={`${outfit.className} antialiased`}>
-          <Header />
+          {/* <Header /> */}
           {children}
           <Footer />
         </body>
       </html>
-    </ClerkProvider>
+    </div>
   );
 }

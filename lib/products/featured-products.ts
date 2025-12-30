@@ -1,8 +1,10 @@
 import { db } from "@/db";
 import { Products } from "@/db/schema";
 import { desc, eq } from "drizzle-orm";
+import { connection } from "next/server";
 
 export const FeatureProduct = async () => {
+  "use cache";
   const productList = await db
     .select()
     .from(Products)
@@ -12,16 +14,10 @@ export const FeatureProduct = async () => {
 };
 
 export const getRecentDateProduct = async () => {
+  await connection();
   const productData = await FeatureProduct();
   const oneWeekAgo = new Date();
   oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
-  console.log("oneweekago", oneWeekAgo);
-  console.log(
-    "prodcut",
-    productData.filter((product) =>
-      console.log("productData", product.createdAt)
-    )
-  );
 
   return productData.filter(
     (product) =>
